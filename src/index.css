@@ -171,3 +171,13 @@ table {
 .justify-center {
   justify-content: center;
 }
+
+/*
+ * Signin form
+ */
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

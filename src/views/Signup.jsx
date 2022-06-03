@@ -22,6 +22,7 @@ const schema = yup.object({
   name: yup.string().required(),
   email: yup.string().email().required(),
   password: yup.string().min(8).max(16).required(),
+  terms: yup.boolean().oneOf([true], "Você precisa aceitar para continuar.")
 }).required();
 
 const Signup = (props) => {
@@ -44,7 +45,13 @@ const Signup = (props) => {
           {errors.email && <span>{errors.email?.message}</span>}
 
           <input placeholder="Your secret password" {...register("password")} />
-          {errors.password && <span>{errors.email?.password}</span>}
+          {errors.password && <span>{errors.password?.message}</span>}
+
+          <label>
+            <input type="checkbox" {...register("terms")} />
+            <span>Eu aceito os termos de uso da plataforma</span>
+            {errors.terms && <span>{errors.terms?.message}</span>}
+          </label>
 
           <button type="submit">Create account</button>
         </div>

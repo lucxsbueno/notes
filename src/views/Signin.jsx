@@ -11,7 +11,7 @@ import {
 } from "react-hook-form";
 
 //Yup resolver
-import { 
+import {
   yupResolver
 } from '@hookform/resolvers/yup';
 
@@ -21,11 +21,12 @@ import * as yup from "yup";
 const schema = yup.object({
   email: yup.string().email().required(),
   password: yup.string().min(8).max(16).required(),
+  terms: yup.boolean().oneOf([true], "Você precisa aceitar para continuar.")
 }).required();
 
 const Signin = () => {
   const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schema) });
-  
+
   const onSubmit = data => console.log(data);
 
   return (
@@ -39,7 +40,13 @@ const Signin = () => {
           {errors.email && <span>{errors.email?.message}</span>}
 
           <input placeholder="Your secret password" {...register("password")} />
-          {errors.password && <span>{errors.email?.password}</span>}
+          {errors.password && <span>{errors.password?.message}</span>}
+
+          <label>
+            <input type="checkbox" {...register("terms")} />
+            <span>Eu aceito os termos de uso da plataforma</span>
+            {errors.terms && <span>{errors.terms?.message}</span>}
+          </label>
 
           <button type="submit">Entrar</button>
         </div>
