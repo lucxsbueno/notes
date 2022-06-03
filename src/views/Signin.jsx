@@ -21,7 +21,7 @@ import * as yup from "yup";
 const schema = yup.object({
   email: yup.string().email().required(),
   password: yup.string().min(8).max(16).required(),
-  terms: yup.boolean().oneOf([true], "Você precisa aceitar para continuar.")
+  terms: yup.boolean().oneOf([true], "Você precisa aceitar os termos para continuar.")
 }).required();
 
 const Signin = () => {
@@ -36,10 +36,10 @@ const Signin = () => {
           <h1>Signin</h1>
           <Link to="signup">Create an account</Link>
 
-          <input placeholder="john@doe.com" {...register("email")} />
+          <input placeholder="john@doe.com" type="email" {...register("email")} />
           {errors.email && <span>{errors.email?.message}</span>}
 
-          <input placeholder="Your secret password" {...register("password")} />
+          <input placeholder="Your secret password" type="password" {...register("password")} />
           {errors.password && <span>{errors.password?.message}</span>}
 
           <label>

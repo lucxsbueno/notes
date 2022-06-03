@@ -41,10 +41,10 @@ const Signup = (props) => {
           <input placeholder="John Doe" {...register("name")} />
           {errors.name && <span>{errors.name?.message}</span>}
 
-          <input placeholder="john@doe.com" {...register("email")} />
+          <input placeholder="john@doe.com" type="email" {...register("email")} />
           {errors.email && <span>{errors.email?.message}</span>}
 
-          <input placeholder="Your secret password" {...register("password")} />
+          <input placeholder="Your secret password" type="password" {...register("password")} />
           {errors.password && <span>{errors.password?.message}</span>}
 
           <label>
