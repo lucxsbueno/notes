@@ -1,23 +1,19 @@
 import React from "react";
 
-//Routes
 import {
   Link
 } from "react-router-dom";
 
-//Form
 import {
   useForm
 } from "react-hook-form";
 
-//Yup resolver
 import {
   yupResolver
 } from '@hookform/resolvers/yup';
 
 import * as yup from "yup";
 
-//Input validations
 const schema = yup.object({
   name: yup.string().required(),
   email: yup.string().email().required(),

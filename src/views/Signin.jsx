@@ -1,23 +1,19 @@
 import React from "react";
 
-//Routes
 import {
   Link
 } from "react-router-dom";
 
-//Form
 import {
   useForm
 } from "react-hook-form";
 
-//Yup resolver
 import {
   yupResolver
 } from '@hookform/resolvers/yup';
 
 import * as yup from "yup";
 
-//Input validations
 const schema = yup.object({
   email: yup.string().email().required(),
   password: yup.string().min(8).max(16).required(),
@@ -27,25 +23,32 @@ const schema = yup.object({
 const Signin = () => {
   const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schema) });
 
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => alert(JSON.stringify(data));
 
   return (
     <div className="w-h-100 d-flex flex-direction-row align-center justify-center">
       <form className="d-inline-block" onSubmit={handleSubmit(onSubmit)}>
         <div className="signin-form">
           <h1>Signin</h1>
+
           <Link to="signup">Create an account</Link>
 
-          <input placeholder="john@doe.com" type="email" {...register("email")} />
-          {errors.email && <span>{errors.email?.message}</span>}
+          <label className="form-input">
+            <span>E-mail</span>
+            <input placeholder="john@doe.com" type="text" {...register("email")} />
+            {errors.email && <p>{errors.email?.message}</p>}
+          </label>
 
-          <input placeholder="Your secret password" type="password" {...register("password")} />
-          {errors.password && <span>{errors.password?.message}</span>}
+          <label className="form-input">
+            <span>Password</span>
+            <input placeholder="Your secret password" type="password" {...register("password")} />
+            {errors.password && <p>{errors.password?.message}</p>}
+          </label>
 
-          <label>
+          <label className="form-input">
             <input type="checkbox" {...register("terms")} />
             <span>Eu aceito os termos de uso da plataforma</span>
-            {errors.terms && <span>{errors.terms?.message}</span>}
+            {errors.terms && <p>{errors.terms?.message}</p>}
           </label>
 
           <button type="submit">Entrar</button>
