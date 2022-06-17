@@ -1,9 +1,13 @@
 import React from "react";
 
-const Input = () => {
+const Input = ({ label, name, register, error, example }) => {
 
   return (
-    <div>Bosta</div>
+    <label className="form-input">
+      <span>{label}</span>
+      <input placeholder={example} type="text" name={name} {...register(name)} />
+      {error && <p>{error.message}</p>}
+    </label>
   );
 }
 

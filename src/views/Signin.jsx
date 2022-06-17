@@ -10,9 +10,16 @@ import {
 
 import {
   yupResolver
-} from '@hookform/resolvers/yup';
+} from "@hookform/resolvers/yup";
 
 import * as yup from "yup";
+
+//components
+import {
+  Input,
+  Button,
+  Checkbox
+} from "../components";
 
 const schema = yup.object({
   email: yup.string().email().required(),
@@ -33,25 +40,28 @@ const Signin = () => {
 
           <Link to="signup">Create an account</Link>
 
-          <label className="form-input">
-            <span>E-mail</span>
-            <input placeholder="john@doe.com" type="text" {...register("email")} />
-            {errors.email && <p>{errors.email?.message}</p>}
-          </label>
+          <Input
+            label="E-mail"
+            name="email"
+            example="john@doe.com"
+            register={register}
+            error={errors.email} />
 
-          <label className="form-input">
-            <span>Password</span>
-            <input placeholder="Your secret password" type="password" {...register("password")} />
-            {errors.password && <p>{errors.password?.message}</p>}
-          </label>
+          <Input
+            label="Password"
+            name="password"
+            example="default pass"
+            register={register}
+            error={errors.password} />
 
-          <label className="form-input">
-            <input type="checkbox" {...register("terms")} />
-            <span>Eu aceito os termos de uso da plataforma</span>
-            {errors.terms && <p>{errors.terms?.message}</p>}
-          </label>
+          <Checkbox
+            name="terms"
+            register={register}
+            error={errors.terms}>
+            <p>Eu aceito os <a href="">termos</a> de uso e <a href="">privacidade</a></p>
+          </Checkbox>
 
-          <button type="submit">Entrar</button>
+          <Button title="Entrar" type="submit" />
         </div>
       </form>
     </div>

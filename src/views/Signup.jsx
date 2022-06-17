@@ -14,10 +14,17 @@ import {
 
 import * as yup from "yup";
 
+//components
+import {
+  Input,
+  Button,
+  Checkbox
+} from "../components";
+
 const schema = yup.object({
   name: yup.string().required(),
   email: yup.string().email().required(),
-  password: yup.string().min(8).max(16).required(),
+  password: yup.string().min(8).max(16).required("A senha é necessária para sua segurança."),
   terms: yup.boolean().oneOf([true], "Você precisa aceitar para continuar.")
 }).required();
 
@@ -34,22 +41,36 @@ const Signup = (props) => {
           <h1>Signup</h1>
           <Link to="/">Go back</Link>
 
-          <input placeholder="John Doe" {...register("name")} />
-          {errors.name && <span>{errors.name?.message}</span>}
+          <Input
+            label="Name"
+            name="name"
+            example="John Doe"
+            register={register}
+            error={errors.name} />
 
-          <input placeholder="john@doe.com" type="email" {...register("email")} />
-          {errors.email && <span>{errors.email?.message}</span>}
+          <Input
+            label="E-mail"
+            name="email"
+            example="john@doe.com"
+            register={register}
+            error={errors.email} />
 
-          <input placeholder="Your secret password" type="password" {...register("password")} />
-          {errors.password && <span>{errors.password?.message}</span>}
+          <Input
+            label="Password"
+            name="password"
+            example="default pass"
+            register={register}
+            error={errors.password} />
 
-          <label>
-            <input type="checkbox" {...register("terms")} />
-            <span>Eu aceito os termos de uso da plataforma</span>
-            {errors.terms && <span>{errors.terms?.message}</span>}
-          </label>
+          <Checkbox
+            name="terms"
+            register={register}
+            error={errors.terms}>
+            <p>Eu aceito os <a href="">termos</a> de uso e <a href="">privacidade</a></p>
+          </Checkbox>
 
-          <button type="submit">Create account</button>
+          <Button title="Entrar" type="submit" />
+
         </div>
       </form>
     </div>
