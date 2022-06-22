@@ -1,9 +1,9 @@
 import React from "react";
 
-const Button = ({ title, type }) => {
+const Button = ({ title, type, isLoading }) => {
 
   return (
-    <button type={type}>{title}</button>
+    <button className="btn btn-primary" type={type} disabled={isLoading}>{title}</button>
   );
 }
 

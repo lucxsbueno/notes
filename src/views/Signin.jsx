@@ -30,7 +30,7 @@ const schema = yup.object({
 const Signin = () => {
   const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schema) });
 
-  const onSubmit = data => alert(JSON.stringify(data));
+  const onSubmit = data => console.log(JSON.stringify(data));
 
   return (
     <div className="w-h-100 d-flex flex-direction-row align-center justify-center">
@@ -40,28 +40,15 @@ const Signin = () => {
 
           <Link to="signup">Create an account</Link>
 
-          <Input
-            label="E-mail"
-            name="email"
-            example="john@doe.com"
-            register={register}
-            error={errors.email} />
+          <Input label="E-mail" name="email" example="john@doe.com" register={register} error={errors.email} />
 
-          <Input
-            label="Password"
-            name="password"
-            example="default pass"
-            register={register}
-            error={errors.password} />
+          <Input label="Password" name="password" example="default pass" register={register} error={errors.password} />
 
-          <Checkbox
-            name="terms"
-            register={register}
-            error={errors.terms}>
+          <Checkbox name="terms" register={register} error={errors.terms}>
             <p>Eu aceito os <a href="">termos</a> de uso e <a href="">privacidade</a></p>
           </Checkbox>
 
-          <Button title="Entrar" type="submit" />
+          <Button title="Sign in" type="submit" isLoading={false} />
         </div>
       </form>
     </div>
