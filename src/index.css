@@ -1,17 +1,42 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
 
 :root {
-  --color-primary: #7F6CDE;
-  --color-white: #FFFFFF;
+  --color-primary: #FFDF6D;
+  --color-primary-hover: #FFE78F;
+  --color-primary-shadow: #FFF8E0;
+
+  --color-secondary: #7F6CDE;
+  --color-secondary-hover: #9687E3;
+  --color-secondary-shadow: #EEEBFE;
+
+  --color-light-100: #FFFFFF;
+  --color-light-200: #FAF9F9;
+  --color-light-300: #F2F2F2;
+
+  --color-dark-100: #3A3A3C;
+  --color-dark-200: #707075;
+  --color-dark-300: #C7C7C7;
+
+  --color-success: #64DC7E;
+  --color-success-hover: #8AE79F;
+  --color-success-shadow: #E5F6E9;
+
+  --color-error: #FF4A55;
+  --color-error-hover: #FF6972;
+  --color-error-shadow: #FFE2E4;
+
+  --color-warning: #FFDF6D;
+  --color-warning-hover: #FFE78F;
+  --color-warning-shadow: #FFF8E0;
 }
 
 * {
   box-sizing: border-box;
 
-  font-family: "Inter", sans-serif;
+  font-family: Consolas, 'Courier New', Courier, monospace;
 }
 
 html,
@@ -146,32 +171,45 @@ table {
 }
 
 /*
- * General styles
+ *
+ *
+ * @info This file respects the BEM methodology
+ * Block-Element-Modifier
  */
 
-.w-h-100 {
+/*
+ * Utility styles
+ */
+.u-txt-bold {
+  font-weight: bold;
+}
+
+.u-max-width {
   display: block;
   width: 100%;
+}
+
+.u-max-height-vh {
   height: 100vh;
 }
 
-.d-inline-block {
+.u-d-inline-block {
   display: inline-block;
 }
 
-.d-flex {
+.u-d-flex {
   display: flex;
 }
 
-.flex-direction-row {
+.u-flex-direction-row {
   flex-direction: row;
 }
 
-.align-center {
+.u-align-center {
   align-items: center;
 }
 
-.justify-center {
+.u-justify-center {
   justify-content: center;
 }
 
@@ -179,7 +217,7 @@ table {
  * Signin form
  */
 
-.signin-form {
+.form {
   width: 320px;
 
   display: flex;
@@ -187,36 +225,62 @@ table {
   align-items: center;
 }
 
+.form__title {
+
+}
+
+.form__field {
+  font-family: Consolas;
+}
+
+.form__label {
+  font-family: Consolas;
+}
+
+.form__input {
+
+}
+
+.form__message {
+
+}
+
 /* Buttons */
 .btn {
   width: 100%;
   border: none;
-  height: 48px;
-  border-radius: 24px;
+  padding: 12px 16px;
+  border-radius: 6px;
   font-size: 16px;
-  font-weight: 400;
   cursor: pointer;
   margin-top: 20px;
 }
 
-.btn-primary {
+.btn--primary {
   background-color: var(--color-primary);
-  color: var(--color-white);
+  color: var(--color-dark);
 
   transition: opacity 0.2s ease-in-out;
 }
 
-.btn-primary:hover {
+.btn--primary:hover {
   opacity: 0.8;
 }
 
-.btn-primary:disabled {
+.btn--primary:disabled {
   opacity: 0.8;
   cursor: default;
 }
 
-.btn-primary:focus {
+.btn--primary:focus {
   opacity: 1;
-  -webkit-box-shadow: 0px 0px 0px 5px rgba(146, 124, 255, 0.45);
-  box-shadow: 0px 0px 0px 5px rgba(146, 124, 255, 0.45);
+  -webkit-box-shadow: 0px 0px 0px 5px rgba(255, 223, 109, 0.35);
+  box-shadow: 0px 0px 0px 5px rgba(255, 223, 109, 0.35);
+}
+
+.btn--primary:disabled {
+  opacity: 0.8;
+  -webkit-box-shadow: 0px 0px 0px 5px rgba(255, 223, 109, 0.35);
+  box-shadow: 0px 0px 0px 5px rgba(255, 223, 109, 0.35);
+  cursor: not-allowed;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   Link
@@ -22,9 +22,9 @@ import {
 } from "../components";
 
 const schema = yup.object({
-  email: yup.string().email().required(),
-  password: yup.string().min(8).max(16).required(),
-  terms: yup.boolean().oneOf([true], "Você precisa aceitar os termos para continuar.")
+  email: yup.string().email("E-mail must be a valid e-mail.").required("E-mail is a required field."),
+  password: yup.string().min(8, "Password must be at least 8 characters.").max(16, "Password must be at most 16 characters.").required("Password is a required field."),
+  terms: yup.boolean().oneOf([true], "You need to accept terms for continue.")
 }).required();
 
 const Signin = () => {
@@ -33,9 +33,9 @@ const Signin = () => {
   const onSubmit = data => console.log(JSON.stringify(data));
 
   return (
-    <div className="w-h-100 d-flex flex-direction-row align-center justify-center">
-      <form className="d-inline-block" onSubmit={handleSubmit(onSubmit)}>
-        <div className="signin-form">
+    <div className="u-max-width u-max-height-vh u-d-flex u-flex-direction-row u-align-center u-justify-center">
+      <form className="u-d-inline-block" onSubmit={handleSubmit(onSubmit)}>
+        <div className="form">
           <h1>Signin</h1>
 
           <Link to="signup">Create an account</Link>

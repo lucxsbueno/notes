@@ -3,7 +3,7 @@ import React from "react";
 const Checkbox = ({ children, name, register, error }) => {
 
   return (
-    <label className="form-input">
+    <label className="form__input">
       <input type="checkbox" {...register(name)} name={name} />
       <div>
         {children}
